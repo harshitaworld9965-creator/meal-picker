@@ -1,6 +1,6 @@
-function MealCard({ meal }) {
+function MealCard({ meal, onSelect }) {
   return (
-    <article className="meal-card">
+    <article className="meal-card" onClick={() => onSelect(meal)}>
       <img className="meal-card-img" src={meal.strMealThumb} alt={meal.strMeal} />
       <div className="meal-card-body">
         <h3 className="meal-card-title">{meal.strMeal}</h3>

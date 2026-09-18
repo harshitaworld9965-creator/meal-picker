@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { useFetch } from './hooks/useFetch'
 import SearchBar from './components/SearchBar'
 import MealList from './components/MealList'
+import MealDetail from './components/MealDetail'
 import './App.css'
 
 const BASE_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('')
+  const [selectedMeal, setSelectedMeal] = useState(null)
 
   const url = searchTerm ? `${BASE_URL}${searchTerm}` : null
   const { data, loading, error } = useFetch(url)
@@ -26,7 +28,11 @@ function App() {
       {loading && <p className="status">Loading…</p>}
       {error && <p className="status">Something went wrong: {error}</p>}
       {meals === null && <p className="status">No meals found. Try another search.</p>}
-      {meals && <MealList meals={meals} />}
+      {meals && <MealList meals={meals} onSelect={setSelectedMeal} />}
+
+      {selectedMeal && (
+        <MealDetail meal={selectedMeal} onClose={() => setSelectedMeal(null)} />
+      )}
     </div>
   )
 }
