@@ -1,0 +1,11 @@
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-3);
+
+}
+
+.app-intro{
+  color: var(--muted);
+  margin-top: var(--space-1);
+}
